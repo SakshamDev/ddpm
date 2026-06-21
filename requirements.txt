@@ -1,0 +1,11 @@
+# Core ML
+torch>=2.0
+torchvision>=0.15
+
+# Utilities
+numpy
+matplotlib
+tqdm
+
+# Testing
+pytest

@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Checkpoints (saved to Google Drive, not committed)
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Logs and outputs
+wandb/
+runs/
+outputs/
+*.log
+
+# Data (downloaded at runtime)
+data/
