@@ -42,3 +42,6 @@ outputs/
 
 # Data (downloaded at runtime)
 data/
+
+# Learning exercises (local only)
+m0_exercises/
