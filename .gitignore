@@ -45,3 +45,11 @@ data/
 
 # Learning exercises (local only)
 m0_exercises/
+
+# Internal learning logs and project tracking (keep out of public repo)
+docs/concepts.md
+docs/research_journal.md
+docs/paper_notes.md
+experiments/exp_log.md
+task_plan.md
+.project_rules.md
