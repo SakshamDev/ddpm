@@ -153,10 +153,12 @@ class UNet(nn.Module):
         attention_resolutions: tuple = (2,),  # Indices in channel_mults where attention applies
         num_res_blocks: int = 2,
         time_emb_dim: int = 256,
+        num_classes: int = None,
     ):
         super().__init__()
         
         final_out_channels = out_channels
+        self.num_classes = num_classes
         
         # Time embedding MLP
         self.time_mlp = nn.Sequential(
@@ -165,6 +167,13 @@ class UNet(nn.Module):
             nn.SiLU(),
             nn.Linear(time_emb_dim, time_emb_dim)
         )
+        
+        # Class embedding (if conditioned)
+        if num_classes is not None:
+            # We add +1 to num_classes to allow a "null" class for CFG unconditional training
+            self.class_emb = nn.Embedding(num_classes + 1, time_emb_dim)
+        else:
+            self.class_emb = None
 
         # Initial convolution
         self.init_conv = nn.Conv2d(in_channels, base_channels, kernel_size=3, padding=1)
@@ -218,18 +227,24 @@ class UNet(nn.Module):
         self.final_conv = nn.Conv2d(now_channels, final_out_channels, kernel_size=1)
 
 
-    def forward(self, x: torch.Tensor, time: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, time: torch.Tensor, classes: torch.Tensor = None) -> torch.Tensor:
         """
         Forward pass.
         
         Args:
             x: Noisy images, shape (B, C, H, W)
             time: Timesteps, shape (B,)
+            classes: Optional class labels for conditional generation, shape (B,)
             
         Returns:
             Predicted noise, shape (B, C, H, W)
         """
         t = self.time_mlp(time)
+        
+        if classes is not None and self.class_emb is not None:
+            c = self.class_emb(classes)
+            t = t + c  # Add class embedding to time embedding
+            
         x = self.init_conv(x)
         
         skips = [x]
