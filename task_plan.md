@@ -20,8 +20,8 @@ If proficient → skip to Milestone 1. Otherwise → design shortest possible Py
 | # | Milestone | Status | Notes |
 |---|-----------|--------|-------|
 | 0 | PyTorch competency assessment | `DONE ✅` | Concepts taught, drill passed 6/6 |
-| 1 | Forward diffusion & math | `READY` | Next up |
-| 2 | Tiny U-Net prototype (MNIST-scale) | `BLOCKED` | |
+| 1 | Forward diffusion & math | `DONE ✅` | Noise schedules and forward jump implemented |
+| 2 | Tiny U-Net prototype (MNIST-scale) | `READY` | Next up |
 | 3 | Full U-Net at CIFAR-10 scale + class embeddings | `BLOCKED` | |
 | 4 | Training loop + EMA + checkpointing | `BLOCKED` | |
 | 5 | Mixed precision + T4 batch-size tuning | `BLOCKED` | |

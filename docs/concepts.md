@@ -67,3 +67,10 @@
 - **Your restatement:** *(fill in)*
 - **Date:** 2026-06-21
 - **Confidence:** —
+
+### Milestone 1 — Noise Schedule & Forward Diffusion
+
+- **Definition:** The forward process adds noise to an image over $T$ steps. The noise schedule dictates how much noise is added at each step, defining $\bar{\alpha}_t$ (the fraction of original signal remaining). The cosine schedule ensures a smoother, more uniform degradation compared to the linear schedule.
+- **Your restatement:** cosine ensures it denoises uniformly
+- **Date:** 2026-06-21
+- **Confidence:** high
