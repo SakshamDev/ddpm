@@ -39,3 +39,4 @@ def test_q_sample_limits():
     
     # Result should be close to zero since signal is suppressed and noise=0
     assert torch.abs(x_t_end).max() < 0.05
+ 

@@ -75,11 +75,8 @@ def train(args):
     latest_ckpt = find_latest_checkpoint(args.checkpoint_dir)
     if latest_ckpt:
         print(f"Resuming from checkpoint: {latest_ckpt}")
-        ckpt_data = load_checkpoint(latest_ckpt, model, optimizer, device)
+        ckpt_data = load_checkpoint(latest_ckpt, model, optimizer, device, ema_model=ema_model, scaler=scaler)
         start_step = ckpt_data["step"]
-        # Also load EMA model weights
-        if "ema_model_state" in ckpt_data:
-            ema_model.load_state_dict(ckpt_data["ema_model_state"])
 
     # Training Loop
     model.train()
@@ -154,7 +151,8 @@ def train(args):
                 config=vars(args),
                 seed=42,
                 loss_history=loss_history,
-                ema_model_state=ema_model.state_dict()
+                ema_model=ema_model,
+                scaler=scaler
             )
 
 if __name__ == "__main__":
