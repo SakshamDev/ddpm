@@ -1,4 +1,4 @@
-# Colab-specific requirements (extends base)
+# Kaggle-specific requirements (extends base)
 -r requirements.txt
 
 # Milestone 9 additions (uncomment when needed)
